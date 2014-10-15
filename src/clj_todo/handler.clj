@@ -1,6 +1,13 @@
 (ns clj-todo.handler
   (:require [compojure.core :refer :all]
-            [compojure.route :as route]))
+            [compojure.route :as route])
+  (:use [hiccup.core]))
+
+(defn todo-list
+  []
+  (html
+    [:body
+     [:h1 "Potato"]]))
 
 (defroutes app
-  (GET "/" [] "<h1>Potato</h1>"))
+  (GET "/" [] (todo-list)))
