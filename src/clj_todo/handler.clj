@@ -4,9 +4,9 @@
   (:use [hiccup.core]))
 
 (def todos
-  ["Buy some milk"
+  (ref ["Buy some milk"
    "Wash the dishes"
-   "conquer the world"])
+   "conquer the world"]))
 
 (defn todo-list
   []
@@ -14,7 +14,7 @@
     [:body
      [:h1 "Todo List"]
      [:ul
-      (map (fn [todo] [:li todo]) todos)]]))
+      (map (fn [todo] [:li todo]) @todos)]]))
 
 (defroutes app
   (GET "/" [] (todo-list)))
