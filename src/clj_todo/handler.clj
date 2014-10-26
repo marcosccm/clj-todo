@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
             [compojure.route :as route]
+            [ring.util.response :refer [redirect]]
             [clj-todo.views :as views]
             [hiccup.middleware :refer [wrap-base-url]])
   (:use [hiccup.core]))
@@ -17,7 +18,7 @@
 
 (defroutes app-routes
   (GET "/" [] (views/todo-list todos))
-  (POST "/" [todo] (do (add-todo todo) (views/todo-list todos))))
+  (POST "/" [todo] (do (add-todo todo) (redirect "/"))))
 
 (def app
   (-> (routes app-routes)
