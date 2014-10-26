@@ -2,7 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [hiccup.form :refer :all]
+            [clj-todo.views :as views]
             [hiccup.middleware :refer [wrap-base-url]])
   (:use [hiccup.core]))
 
@@ -11,32 +11,13 @@
         "Wash the dishes"
         "conquer the world"]))
 
-(defn layout
-  [& content]
-  (html
-    [:head
-      [:title "Clj Todo!"]]
-    [:body content]))
-
-(defn todo-list
-  []
-  (layout
-    [:h1 "Todo List"]
-    [:ul
-      (map (fn [todo] [:li todo]) @todos)]
-    [:h1 "New Todo"]
-    [:form { :action "/" :method "post"}
-      [:label { :for "todo" } "Todo"]
-      (text-field "todo")
-      (submit-button "submit")]))
-
 (defn add-todo
   [todo]
   (dosync (alter todos conj todo)))
 
 (defroutes app-routes
-  (GET "/" [] (todo-list))
-  (POST "/" [todo] (do (add-todo todo) (todo-list))))
+  (GET "/" [] (views/todo-list todos))
+  (POST "/" [todo] (do (add-todo todo) (views/todo-list todos))))
 
 (def app
   (-> (routes app-routes)
