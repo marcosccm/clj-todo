@@ -9,7 +9,7 @@
       [:title "Clj Todo!"]]
     [:body content]))
 
-(defn todo-list
+(defn index
   [todos]
   (layout
     [:h1 "Todo List"]

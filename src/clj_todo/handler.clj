@@ -4,21 +4,13 @@
             [compojure.route :as route]
             [ring.util.response :refer [redirect]]
             [clj-todo.views :as views]
+            [clj-todo.todos :as todos]
             [hiccup.middleware :refer [wrap-base-url]])
   (:use [hiccup.core]))
 
-(def todos
-  (ref ["Buy some milk"
-        "Wash the dishes"
-        "conquer the world"]))
-
-(defn add-todo
-  [todo]
-  (dosync (alter todos conj todo)))
-
 (defroutes app-routes
-  (GET "/" [] (views/todo-list todos))
-  (POST "/" [todo] (do (add-todo todo) (redirect "/"))))
+  (GET "/" [] (views/index todos/todo-list))
+  (POST "/" [todo] (do (todos/add-todo todo) (redirect "/"))))
 
 (def app
   (-> (routes app-routes)
