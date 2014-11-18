@@ -9,7 +9,7 @@
   (:use [hiccup.core]))
 
 (defroutes app-routes
-  (GET "/" [] (views/index todos/todo-list))
+  (GET "/" [] (views/index (todos/todo-list)))
   (POST "/" [todo] (do (todos/add-todo todo) (redirect "/"))))
 
 (def app

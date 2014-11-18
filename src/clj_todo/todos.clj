@@ -1,10 +1,14 @@
-(ns clj-todo.todos)
+(ns clj-todo.todos
+  (:require [taoensso.carmine :as car]))
 
-(def todo-list
-  (ref ["Buy some milk"
-        "Wash the dishes"
-        "conquer the world"]))
+(defmacro redis* [& body] `(car/wcar { :pool {}, :spec {}} ~@body))
+
+(defn todo-list
+  []
+  (apply hash-map (redis* (car/hgetall "todos"))))
 
 (defn add-todo
   [todo]
-  (dosync (alter todo-list conj todo)))
+  (let [id (redis* (car/incr "todos.count"))]
+    (redis*
+      (car/hmset "todos" id  todo))))
