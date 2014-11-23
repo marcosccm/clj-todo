@@ -18,7 +18,8 @@
 
 (defroutes app-routes
   (GET "/" [] (views/index (todos/todo-list)))
-  (POST "/" [todo] (do (todos/add-todo todo) (redirect "/"))))
+  (POST "/" [todo] (do (todos/add-todo todo) (redirect "/")))
+  (DELETE "/:id" [id] (do (todos/remove-todo id) (redirect "/"))))
 
 (def app
   (-> (routes app-routes)
