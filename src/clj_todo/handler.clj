@@ -1,12 +1,20 @@
 (ns clj-todo.handler
   (:require [compojure.core :refer :all]
-            [compojure.handler :as handler]
             [compojure.route :as route]
-            [ring.util.response :refer [redirect]]
             [clj-todo.views :as views]
             [clj-todo.todos :as todos]
+            [taoensso.timbre :as timbre]
+            [ring.util.response :refer [redirect]]
+            [ring.middleware.defaults :refer :all]
             [hiccup.middleware :refer [wrap-base-url]])
   (:use [hiccup.core]))
+
+(defn wrap-with-logging [handler]
+  (fn [req]
+    (timbre/debug req)
+    (let [resp (handler req)]
+      (timbre/debug resp)
+      resp)))
 
 (defroutes app-routes
   (GET "/" [] (views/index (todos/todo-list)))
@@ -14,5 +22,6 @@
 
 (def app
   (-> (routes app-routes)
-      (handler/site)
-      (wrap-base-url)))
+      (wrap-defaults site-defaults)
+      (wrap-base-url)
+      (wrap-with-logging)))
