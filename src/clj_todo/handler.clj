@@ -12,9 +12,7 @@
 (defn wrap-with-logging [handler]
   (fn [req]
     (timbre/debug req)
-    (let [resp (handler req)]
-      (timbre/debug resp)
-      resp)))
+    (handler req)))
 
 (defroutes app-routes
   (GET "/" [] (views/index (todos/todo-list)))
