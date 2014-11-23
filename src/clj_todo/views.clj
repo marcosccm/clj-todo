@@ -10,16 +10,17 @@
       [:title "Clj Todo!"]]
     [:body content]))
 
+(defn show-todo [[id todo]]
+  [:li todo
+    (form-to [:delete (str "/" id)]
+            (anti-forgery-field)
+            (submit-button "done!"))])
+
 (defn index [todos]
   (layout
     [:h1 "Todo List"]
     [:ul
-      (map (fn [[id todo]]
-             [:li
-              todo
-              (form-to [:delete (str "/" id)]
-                       (anti-forgery-field)
-                       (submit-button "done!"))]) todos)]
+      (map show-todo todos)]
     [:h1 "New Todo"]
     [:form { :action "/" :method "post"}
       (anti-forgery-field)
