@@ -1,14 +1,13 @@
 # clj-todo
 
-A Clojure library designed to ... well, that part is up to you.
+Sample todo backend app I am writing to explore web development
+in clojure. Expect to find many crappy or over-engineered solutions
+as I learn my way around the stack.
 
 ## Usage
 
-FIXME
+You really don't use want to use this thing
 
 ## License
 
-Copyright Â© 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+It's just a bunch of code Â
