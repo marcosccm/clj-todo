@@ -1,5 +1,6 @@
 (ns clj-todo.views
   (:require [hiccup.form :refer :all]
+            [hiccup.page :refer [include-js]]
             [hiccup.element :refer :all])
   (:use [hiccup.core]
         [ring.util.anti-forgery]))
@@ -7,7 +8,8 @@
 (defn layout [& content]
   (html
     [:head
-      [:title "Clj Todo!"]]
+      [:title "Clj Todo!"]
+      (include-js "/js/cljtodo.js")]
     [:body content]))
 
 (defn show-todo [[id todo]]
