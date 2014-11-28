@@ -22,7 +22,10 @@
                  [compojure "1.2.0"]
                  [hiccup "1.0.5"]
                  [environ "1.0.0"]
+                 [cheshire "5.3.1"]
                  [com.taoensso/timbre "3.3.1"]
                  [com.taoensso/carmine "2.7.0"  :exclusions [org.clojure/clojure]]
+                 [ring/ring-json "0.3.1"]
                  [ring/ring-defaults "0.1.2"]
-                 [midje "1.6.3"]])
+                 [midje "1.6.3"]
+                 [ring-mock "0.1.5"]])

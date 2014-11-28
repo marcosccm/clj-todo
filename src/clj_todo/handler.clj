@@ -4,8 +4,9 @@
             [clj-todo.views :as views]
             [clj-todo.todos :as todos]
             [taoensso.timbre :as timbre]
-            [ring.util.response :refer [redirect]]
+            [ring.util.response :refer [redirect response]]
             [ring.middleware.defaults :refer :all]
+            [ring.middleware.json :refer [wrap-json-response]]
             [hiccup.middleware :refer [wrap-base-url]])
   (:use [hiccup.core]))
 
@@ -20,8 +21,12 @@
   (DELETE "/:id" [id] (do (todos/remove-todo id) (redirect "/")))
   (route/resources "/"))
 
+(defroutes api-routes
+  (GET "/api" [] (response (todos/todo-list))))
+
 (def app
-  (-> (routes app-routes)
+  (-> (routes app-routes api-routes)
+      (wrap-json-response)
       (wrap-defaults site-defaults)
       (wrap-base-url)
       (wrap-with-logging)))
