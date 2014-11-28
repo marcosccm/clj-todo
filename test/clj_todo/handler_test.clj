@@ -3,7 +3,7 @@
             [clj-todo.todos :refer [add-todo]]
             [clj-todo.helpers :refer [clean-redis-collections]])
   (:use midje.sweet
-        clj-todo.handler
+        clj-todo.app
         ring.mock.request))
 
 (def sample-todo "I am a sample")

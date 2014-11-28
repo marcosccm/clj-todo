@@ -15,7 +15,7 @@
                          :optimizations :whitespace
                          :pretty-print true}}]}
 
-  :ring {:handler clj-todo.handler/app}
+  :ring {:handler clj-todo.app/app}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2202"]
