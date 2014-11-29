@@ -7,7 +7,8 @@
   :plugins [[lein-ring "0.8.12"]
             [lein-environ "1.0.0"]
             [lein-midje "3.1.3"]
-            [lein-cljsbuild "1.0.3"]]
+            [lein-cljsbuild "1.0.3"]
+            [lein-pdo "0.1.1"]]
 
   :cljsbuild {
     :builds [{:source-paths ["src-cljs"]
@@ -17,6 +18,8 @@
                          :source-map true}}]}
 
   :ring {:handler clj-todo.app/app}
+
+  :aliases {"up" ["pdo" "cljsbuild" "auto" "dev," "ring" "server-headless"]}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2202"]
