@@ -9,7 +9,10 @@
   (html
     [:head
       [:title "Clj Todo!"]
-      (include-js "/js/cljtodo.js")]
+      (include-js "http://fb.me/react-0.11.1.js")
+      (include-js "js/out/goog/base.js")
+      (include-js "js/cljtodo.js")
+      [:script {:type "text/javascript"} "goog.require('clj_todo.hello');"]]
     [:body content]))
 
 (defn show-todo [[id todo]]

@@ -12,8 +12,9 @@
   :cljsbuild {
     :builds [{:source-paths ["src-cljs"]
               :compiler {:output-to "resources/public/js/cljtodo.js"
-                         :optimizations :whitespace
-                         :pretty-print true}}]}
+                         :output-dir "resources/public/js/out"
+                         :optimizations :none
+                         :source-map true}}]}
 
   :ring {:handler clj-todo.app/app}
 
@@ -28,4 +29,5 @@
                  [ring/ring-json "0.3.1"]
                  [ring/ring-defaults "0.1.2"]
                  [midje "1.6.3"]
-                 [ring-mock "0.1.5"]])
+                 [ring-mock "0.1.5"]
+                 [om "0.8.0-alpha2"]])
