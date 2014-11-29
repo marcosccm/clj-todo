@@ -1,9 +1,6 @@
 (ns clj-todo.core
-  (:require-macros [cljs.core.async.macros :refer [go alt!]])
-  (:require [goog.events :as events]
-            [cljs.core.async :refer [put! <! >! chan timeout]]
-            [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]))
+  (:require [om.core :as om :include-macros true]
+            [sablono.core :as html :refer-macros [html]]))
 
 (enable-console-print!)
 
@@ -11,8 +8,10 @@
 
 (defn renderer [data owner]
   (om/component
-    (apply dom/ul nil
-      (map (fn [[id todo]] (dom/li nil todo)) (:todos data)))))
+    (html [:div
+            [:h1 "Ommmm"]
+            [:ul
+              (map (fn [[id todo]] [:li todo]) (:todos data))]])))
 
 (om/root renderer app-state
    {:target (. js/document (getElementById "content"))})
