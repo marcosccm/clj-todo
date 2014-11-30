@@ -14,18 +14,9 @@
       (include-js "js/cljtodo.js")
     [:body content]]))
 
-(defn show-todo [[id todo]]
-  [:li todo
-    (form-to [:delete (str "/" id)]
-            (anti-forgery-field)
-            (submit-button "done!"))])
-
 (defn index [todos]
   (layout
     [:div {:id "content"}]
-    [:h1 "Todo List"]
-    [:ul
-      (map show-todo todos)]
     [:h1 "New Todo"]
     [:form { :action "/" :method "post"}
       (anti-forgery-field)

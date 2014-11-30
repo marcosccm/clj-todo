@@ -22,12 +22,13 @@
   :aliases {"up" ["pdo" "cljsbuild" "auto" "dev," "ring" "server-headless"]}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2202"]
+                 [org.clojure/clojurescript "0.0-2371"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [sablono "0.2.22"]
                  [compojure "1.2.0"]
                  [hiccup "1.0.5"]
                  [environ "1.0.0"]
+                 [cljs-http "0.1.21"]
                  [cheshire "5.3.1"]
                  [com.taoensso/timbre "3.3.1"]
                  [com.taoensso/carmine "2.7.0"  :exclusions [org.clojure/clojure]]
